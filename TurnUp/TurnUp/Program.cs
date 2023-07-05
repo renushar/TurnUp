@@ -7,29 +7,28 @@ public class Program
 {
     private static void Main(string[] args)
     {
-            // ---- Open Chrome Browser ----
+            // Open Chrome Browser 
             IWebDriver driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
 
-            // ---- Launch TurnUp Portal ---
+            // Launch TurnUp Portal
             driver.Navigate().GoToUrl("http://horse.industryconnect.io/Account/Login?ReturnUrl=%2f");
             Thread.Sleep(1000);
 
-            // ---- Identify the username textbox and enter a valid username ---
-
+            //Identify the username textbox and enter a valid username
             IWebElement usernameTextbox = driver.FindElement(By.Id("UserName"));
             usernameTextbox.SendKeys("hari");
 
-            // ---- Identify password textbox and enter valid password ---
+            // Identify password textbox and enter valid password 
             IWebElement passwordTextbox = driver.FindElement(By.Id("Password"));
             passwordTextbox.SendKeys("123123");
 
-            // ---- Click on login button ---
-            IWebElement LoginButton = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/form/div[3]/input[1]"));
-            LoginButton.Click();
+            // Click on login button 
+            IWebElement loginButton = driver.FindElement(By.XPath("//*[@id=\"loginForm\"]/form/div[3]/input[1]"));
+            loginButton.Click();
             Thread.Sleep(1500);
 
-            // ---- check if user has logged in successfully ---
+            // Check if user has logged in successfully
             IWebElement helloHari= driver.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li/a"));
             
             if(helloHari.Text == "Hello hari!")
@@ -41,47 +40,48 @@ public class Program
                 Console.WriteLine("user has not logged in.");
         }
 
-        // ---- create a new Time record --
-        // ---- click on administration tab --
+
+       //------------------------------ Create a new Time record ------------------------------
+        // Click on administration tab 
         IWebElement administrationTab = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/a"));
         administrationTab.Click();
 
-        // ---- navigate to Time and Material page ---
+        // Navigate to Time and Material page 
         IWebElement tmOption = driver.FindElement(By.XPath("/html/body/div[3]/div/div/ul/li[5]/ul/li[3]/a"));
         tmOption.Click();
 
-        // ---- click on create new button ---
+        // Click on create new button 
         IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
         createNewButton.Click();
 
-        // ---- select time from dropdowwn button ---
+        // Select time from dropdowwn button 
         IWebElement dropdownList = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[1]/div/span[1]/span/span[2]/span"));
         dropdownList.Click();
 
         IWebElement timeOption= driver.FindElement(By.XPath("//*[@id=\"TypeCode_listbox\"]/li[2]"));
         timeOption.Click();
 
-        // ---- enter code ---
+        // Enter code 
         IWebElement codeTextbox = driver.FindElement(By.Id("Code"));
         codeTextbox.SendKeys("Test1");
 
-        // ---- enter description ---
+        // Enter description 
         IWebElement descriptionTextbox = driver.FindElement(By.Id("Description"));
         descriptionTextbox.SendKeys("Test1");
 
-        // ---- enter price per unit ---
+        // Enter price per unit
         IWebElement priceTag = driver.FindElement(By.XPath("//*[@id=\"TimeMaterialEditForm\"]/div/div[4]/div/span[1]/span/input[1]"));
         priceTag.Click();
 
         IWebElement priceTextbox = driver.FindElement(By.Id("Price"));
         priceTextbox.SendKeys("10");
 
-        // ---- click on save button ---
+        // Click on save button 
         IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
         saveButton.Click();
         Thread.Sleep(3500);
 
-        // ---- check if new time record has been created successfully ---
+        // Check if new time record has been created successfully
         IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
         goToLastPageButton.Click();
 
@@ -96,53 +96,31 @@ public class Program
         }
         Thread.Sleep(3500);
 
-        // --- edit time record ---
-        // --- click on edit button ---
-        IWebElement LastPageButtonforedit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-        LastPageButtonforedit.Click();
+
+        // ------------------------------ Edit time record ----------------------------
+        // Click on edit button
+        IWebElement lastPageButtonForEdit = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+        lastPageButtonForEdit.Click();
         IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
         editButton.Click();
         Thread.Sleep(3500);
 
-        // ---- edit time from dropdowwn button ---
-        //IWebElement dropDownList = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[1]/td[5]/a[1]"));
-        //dropDownList.Click();
-
-        //IWebElement editTimeOption = driver.FindElement(By.XPath("//*[@id=\"TypeCode_listbox\"]/li[2]"));
-        //editTimeOption.Click();
-        //Thread.Sleep(3500);
-
-        // ---- edit code ---
-        IWebElement editcodeTextbox = driver.FindElement(By.Id("Code"));
-        editcodeTextbox.SendKeys("RenuS");
-
-       
-
-        //Thread.Sleep(3500);
-
-        // ---- edit description ---
-        //IWebElement editdescriptionTextbox = driver.FindElement(By.Id("Description"));
-        //editdescriptionTextbox.SendKeys("RenuSharma");
-
-        // ---- editprice per unit ---
-        //IWebElement editpriceTag = driver.FindElement(By.XPath("//*[@id="TimeMaterialEditForm"]/div/div[4]/div/span[1]/span/input[1]"));
-        //editpriceTag.Click();
-
-        //IWebElement editpriceTextbox = driver.FindElement(By.Id("Price"));
-        //editpriceTextbox.SendKeys("90");
-
-        // ---- click on save button ---
+        // Edit code 
+        IWebElement editCodeTextbox = driver.FindElement(By.Id("Code"));
+        editCodeTextbox.SendKeys("RenuS");
+              
+        // Click on save button
         IWebElement saveEditButton = driver.FindElement(By.Id("SaveButton"));
         saveEditButton.Click();
         Thread.Sleep(3500);
 
-        // ---- check if time records has been edited successfully ---
-         IWebElement goTothelastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-        goTothelastPageButton.Click();
+        // Check if time records has been edited successfully 
+         IWebElement goToTheLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+        goToTheLastPageButton.Click();
 
-        IWebElement neweditCode = driver.FindElement(By.XPath("//*[@id=tmsGrid]/div[3]/table/tbody/tr[last()]/td[1]"));
+        IWebElement newEditCode = driver.FindElement(By.XPath("//*[@id=tmsGrid]/div[3]/table/tbody/tr[last()]/td[1]"));
 
-        if (neweditCode.Text == "RenuS2") 
+        if (newEditCode.Text == "RenuS2") 
          {
           Console.WriteLine("Edit Functionality has been working.");
         }
@@ -153,20 +131,18 @@ public class Program
         Thread.Sleep(1500);
 
 
-
-        // --- delete time record ---
-
-        //-----Click on delete button-----
-        IWebElement Deletebutton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[7]/td[last()]/a[2]"));
-        Deletebutton.Click();
+        // ---------------------------------------- Delete Time Record --------------------------
+        // Click on delete button
+        IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[7]/td[last()]/a[2]"));
+        deleteButton.Click();
         Thread.Sleep(1000);
 
-        //---Click OK to delete---
+        // Click OK to delete
         driver.SwitchTo().Alert().Accept();
 
-        //Check if the record is deleted
-        IWebElement LastPgButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
-        LastPgButton.Click();
+        // Check if the record is deleted
+        IWebElement lastPgButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+        lastPgButton.Click();
         IWebElement deletedCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[7]/td[last()]/a[2]"));
         if (deletedCode.Text == "RenuS")
         {
