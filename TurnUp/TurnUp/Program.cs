@@ -154,11 +154,32 @@ public class Program
 
 
 
-        // --- click on edit button ---
-
-
         // --- delete time record ---
 
+        //-----Click on delete button-----
+        IWebElement Deletebutton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[7]/td[last()]/a[2]"));
+        Deletebutton.Click();
+        Thread.Sleep(1000);
 
+        //---Click OK to delete---
+        driver.SwitchTo().Alert().Accept();
+
+        //Check if the record is deleted
+        IWebElement LastPgButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+        LastPgButton.Click();
+        IWebElement deletedCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[7]/td[last()]/a[2]"));
+        if (deletedCode.Text == "RenuS")
+        {
+            Console.WriteLine("The delete functionality has been working successfully");
+        }
+
+        else
+        {
+            Console.WriteLine("The delete functionality has not been working . test failed");
+
+        }
     }
 }
+
+
+    
